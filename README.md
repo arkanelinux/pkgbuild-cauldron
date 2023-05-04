@@ -1,5 +1,5 @@
 # Arkane Linux PKGBUILD Cauldron
-This repo contains the PKGBUILD files for all packages available in the [Arkane Cauldron software repositories](https://repo.arkanelinux.org/cauldron).
+This repo contains the PKGBUILD files for all packages available in the [Arkane Cauldron software repositories](https://repo.arkanelinux.org/arkane-cauldron).
 
 The packages in the Cauldron are deemed as potential interesting future additions to Arkane Linux. Packages in this repo may or may not be added to Arkane Linux stable at a later point in the future. Some packages may stay in the Cauldron indefinitely because they are interesting enough to keep around but not suitable for default Arkane Linux.
 
