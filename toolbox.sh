@@ -20,7 +20,7 @@ elif [[ $1 == 'clear' ]]; then
 elif [[ $1 == 'push' ]]; then
 	export repo="${USER}@${ARKANE_REPO}"
 
-	scp ./arkane.* $repo
+	scp ./arkane-cauldron.* $repo
 	scp ./*/*.pkg.tar.zst $repo
 	scp ./*/*.pkg.tar.zst.sig $repo
 else
