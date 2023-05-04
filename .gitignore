@@ -1,0 +1,9 @@
+pkg
+*.tar.*
+.BUILDINFO
+.PKGINFO
+.MTREE
+/*/src
+/arkane.*
+/*/master
+/*/main
