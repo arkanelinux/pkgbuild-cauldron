@@ -1,2 +1,50 @@
-# pkgbuild-cauldron
-pkgbuild files for up and coming applications or tweaks not yet deemed stable for mainline
+# Arkane Linux PKGBUILD Cauldron
+
+
+# Arkane Linux PKGBUILD files
+This repo contains the PKGBUILD files for all packages available in the [Arkane Cauldron software repositories](https://repo.arkanelinux.org/cauldron).
+
+The packages in the Cauldron are deemed as potential interesting future additions to Arkane Linux. Packages in this repo may or may not be added to Arkane Linux stable at a later point in the future. Some packages may stay in the Cauldron indefinitely because they are interesting enough to keep around but not suitable for default Arkane Linux.
+
+## Building packages and adding them to the database
+### 1. Pull the repository
+```
+git clone https://github.com/arkanelinux/pkgbuild-cauldron.git
+```
+### 2. Build the package
+It is a good habit to always inspect the PKGBUILd files, irrelevant of the source. It takes just a few minutes and can save you from your system getting rm -rf-ed.
+```
+cd pkgbuild/os-installer
+makepkg
+```
+### 3. Add the package to the database
+```
+cd ..
+repo-add arkane-cauldron.db.tar.zst ./os-installer/os-installer-1.0-1-x86_64.pkg.tar.zst
+```
+
+## Script
+| Script | Description |
+| --- | --- |
+| `./toolbox.sh push` | Push all packages to the repository, useless for everyone other than those with access to the repository server |
+| `./toolbox.sh build` | Build all packages | 
+| `./toolbox.sh add` | Add all build packages to the database | 
+| `./toolbox.sh clear` | Removes the arkane.db.old files created after updating the database |
+
+## Development
+Contributions, in any form, be it code or ideas are always welcome!
+### Getting started
+Refer to the ArchWiki page on [PKGBUILD](https://wiki.archlinux.org/title/PKGBUILD) for information. For reference material check the PKGBUILD files included in this repository or the [AUR](https://aur.archlinux.org/).
+
+### Software sources
+Always use the original developer's primary repository or mirror as a software source.
+
+### Software versions
+Always use stable point releases. Git versions should be avoided with rare exceptions.
+
+### Binaries
+Avoid binaries if possible, preferably always build the software from source.
+
+### Including source code inside of this repository
+Only tiny scripts or configuration files should be added in `package_name`, large pieces of software should pull their code or binaries from external sources.
+

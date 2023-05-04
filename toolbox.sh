@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 if [[ $1 == 'add' ]]; then
-	repo-add arkane.db.tar.zst ./*/*pkg.tar.zst
+	repo-add arkane-cauldron.db.tar.zst ./*/*pkg.tar.zst
 elif [[ $1 == 'build' ]]; then
 	BASE_DIR=$(pwd)
 
