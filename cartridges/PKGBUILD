@@ -1,21 +1,24 @@
 pkgname=cartridges
 pkgver=1.5.4
-pkgrel=3
+pkgrel=4
 pkgdesc='A GTK4 + Libadwaita game launcher'
 url='https://github.com/kra-mo/cartridges'
-source=("https://github.com/kra-mo/${pkgname}/archive/refs/tags/v${pkgver}.tar.gz")
-sha256sums=('33174e9698a58212762e10cdf811dbc4aa133941e6fbf652179bf77ffa2d85c8')
+source=("https://github.com/kra-mo/${pkgname}/archive/refs/tags/v${pkgver}.tar.gz"
+        'patch')
+sha256sums=('33174e9698a58212762e10cdf811dbc4aa133941e6fbf652179bf77ffa2d85c8'
+            'e36e5a96d74b58d2b359abb6078811b97e9dfd73e43094c6e9a45d17e6aa4f6b')
 arch=('x86_64')
 license=('GPL3')
 makedepends=('meson' 'blueprint-compiler')
 depends=('gtk4' 'libadwaita' 'python' 'desktop-file-utils' 'appstream-glib' 'glib2' 'python-pillow' 'python-requests' 'python-gobject' 'python-pyyaml')
-optdepends=(
-  "steam: Valve's digital software delivery system"
-  'heroic-games-launcher: Native GOG and Epic Games launcher for Linux'
-  'bottles: Easily manage wine and proton prefix')
+optdepends=("steam: Valve's digital software delivery system"
+            'heroic-games-launcher: Native GOG and Epic Games launcher for Linux'
+            'bottles: Easily manage wine and proton prefix')
 
 build() {
 	cd "$srcdir/$pkgname-$pkgver"
+
+	patch src/utils/save_cover.py < ../patch
 
 	arch-meson . build --buildtype release
 }
