@@ -1,14 +1,18 @@
 pkgname=cartridges
 pkgver=1.5.4
-pkgrel=2
+pkgrel=3
 pkgdesc='A GTK4 + Libadwaita game launcher'
 url='https://github.com/kra-mo/cartridges'
 source=("https://github.com/kra-mo/${pkgname}/archive/refs/tags/v${pkgver}.tar.gz")
-sha256sums=('e6cac128d0b00840d1c91f14a7aee274738b50059884650c3915bc4cb8501e56')
+sha256sums=('33174e9698a58212762e10cdf811dbc4aa133941e6fbf652179bf77ffa2d85c8')
 arch=('x86_64')
 license=('GPL3')
-makedepends=('meson' 'cargo')
-depends=('gtk4' 'python' 'blueprint-compiler' 'desktop-file-utils' 'appstream-glib' 'glib2' 'python-pillow' 'python-requests')
+makedepends=('meson' 'blueprint-compiler')
+depends=('gtk4' 'libadwaita' 'python' 'desktop-file-utils' 'appstream-glib' 'glib2' 'python-pillow' 'python-requests')
+optdepends=(
+  "steam: Valve's digital software delivery system"
+  'heroic-games-launcher: Native GOG and Epic Games launcher for Linux'
+  'bottles: Easily manage wine and proton prefix')
 
 build() {
 	cd "$srcdir/$pkgname-$pkgver"
