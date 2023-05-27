@@ -8,7 +8,7 @@ sha256sums=('33174e9698a58212762e10cdf811dbc4aa133941e6fbf652179bf77ffa2d85c8')
 arch=('x86_64')
 license=('GPL3')
 makedepends=('meson' 'blueprint-compiler')
-depends=('gtk4' 'libadwaita' 'python' 'desktop-file-utils' 'appstream-glib' 'glib2' 'python-pillow' 'python-requests' 'python-gobject')
+depends=('gtk4' 'libadwaita' 'python' 'desktop-file-utils' 'appstream-glib' 'glib2' 'python-pillow' 'python-requests' 'python-gobject' 'python-pyyaml')
 optdepends=(
   "steam: Valve's digital software delivery system"
   'heroic-games-launcher: Native GOG and Epic Games launcher for Linux'
