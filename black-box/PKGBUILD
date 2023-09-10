@@ -7,7 +7,7 @@ url='https://gitlab.gnome.org/raggesilver/blackbox/'
 source=("https://gitlab.gnome.org/raggesilver/blackbox/-/archive/${pkgver}/blackbox-${pkgver}.tar.gz")
 sha256sums=('0a8b76666ac71a6dc9e05b8084e1c6c53cda880ad1f8f778d9d5de9a6644ad0d')
 arch=('x86_64')
-license=('GPL')
+license=('GPL3')
 makedepends=('appstream-glib' 'glib2' 'vala' 'meson')
 depends=('libadwaita' 'libgee' 'vte4' 'pqmarble-git')
 
