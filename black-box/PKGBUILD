@@ -1,0 +1,29 @@
+pkgname=black-box
+_pkgname=blackbox
+pkgver=v0.14.0
+pkgrel=1
+pkgdesc='A beautiful GTK 4 terminal'
+url='https://gitlab.gnome.org/raggesilver/blackbox/'
+source=("https://gitlab.gnome.org/raggesilver/blackbox/-/archive/${pkgver}/blackbox-${pkgver}.tar.gz")
+sha256sums=('0a8b76666ac71a6dc9e05b8084e1c6c53cda880ad1f8f778d9d5de9a6644ad0d')
+arch=('x86_64')
+license=('GPL')
+makedepends=('appstream-glib' 'glib2' 'vala' 'meson')
+depends=('libadwaita' 'libgee' 'vte4' 'pqmarble-git')
+
+build () {
+	tar xf $_pkgname-$pkgver.tar.gz
+	cd $srcdir/$_pkgname-$pkgver
+	arch-meson build -D blackbox_is_flatpak=false
+}
+
+check() {
+  cd $srcdir/$_pkgname-$pkgver
+  meson test -C build
+}
+
+package() {
+	cd $srcdir/$_pkgname-$pkgver
+	pwd
+	meson install -C build --destdir $pkgdir
+}

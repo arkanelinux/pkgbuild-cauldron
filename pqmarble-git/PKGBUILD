@@ -1,0 +1,32 @@
+pkgname=pqmarble-git
+pkgver=r39.f240b2e
+pkgrel=1
+pkgdesc='Utility library for GNOME apps'
+url='https://gitlab.gnome.org/raggesilver/marble'
+source=("${pkgname}::git+${url}.git")
+sha256sums=('SKIP')
+arch=('x86_64')
+license=('GPL3')
+makedepends=('meson' 'git' 'vala' 'gobject-introspection')
+checkdepends=('appstream-glib')
+
+pkgver() {
+  cd $pkgname
+  echo r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)
+}
+
+build() {
+  cd $pkgname
+  arch-meson build
+  meson compile -C build
+}
+
+check() {
+  cd $pkgname
+  meson test -C build
+}
+
+package() {
+  cd $pkgname
+  meson install -C build --destdir $pkgdir
+}
