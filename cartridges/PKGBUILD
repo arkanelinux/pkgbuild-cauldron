@@ -1,12 +1,10 @@
 pkgname=cartridges
-pkgver=1.5.4
-pkgrel=4
+pkgver=2.4.1
+pkgrel=1
 pkgdesc='A GTK4 + Libadwaita game launcher'
 url='https://github.com/kra-mo/cartridges'
-source=("https://github.com/kra-mo/${pkgname}/archive/refs/tags/v${pkgver}.tar.gz"
-        'patch')
-sha256sums=('33174e9698a58212762e10cdf811dbc4aa133941e6fbf652179bf77ffa2d85c8'
-            'e36e5a96d74b58d2b359abb6078811b97e9dfd73e43094c6e9a45d17e6aa4f6b')
+source=("https://github.com/kra-mo/${pkgname}/archive/refs/tags/v${pkgver}.tar.gz")
+sha256sums=('1a4b910de38dff5002b2f1f2d1b09f274cebcc10c76bb0e81132522dbdac9330')
 arch=('x86_64')
 license=('GPL3')
 makedepends=('meson' 'blueprint-compiler')
@@ -17,8 +15,6 @@ optdepends=("steam: Valve's digital software delivery system"
 
 build() {
 	cd "$srcdir/$pkgname-$pkgver"
-
-	patch src/utils/save_cover.py < ../patch
 
 	arch-meson . build --buildtype release
 }
