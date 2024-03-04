@@ -1,0 +1,25 @@
+# Maintainer: Dennis ten Hoove <contact@arkanelinux.org>
+pkgname=zsync2
+pkgver=2024.03.04
+pkgrel=1
+pkgdesc='A rewrite of the advanced file download/sync tool zsync'
+url='https://github.com/AppImageCommunity/zsync2'
+source=("git+https://github.com/AppImageCommunity/$pkgname.git")
+sha256sums=(SKIP)
+arch=('x86_64')
+license=('Artistic')
+makedepends=('cmake' 'make' 'gcc' 'libcurl-gnutls' 'openssl' 'libgcrypt' 'zlib' 'git')
+
+build () {
+	cd $srcdir/$pkgname
+	git submodule update --init
+	mkdir build
+	cd build
+	cmake .. -DUSE_SYSTEM_CURL=1 -DBUILD_CPR_TESTS=0
+	make -j$(nproc)
+}
+
+package() {
+	cd $srcdir/$pkgname/build
+	make DESTDIR=$pkgdir install
+}
