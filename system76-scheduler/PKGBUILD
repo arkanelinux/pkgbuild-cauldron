@@ -1,23 +1,34 @@
+# Maintainer: Dennis ten Hoove <contact@arkanelinux.org>
+
 pkgname=system76-scheduler
-pkgver=2.0.1
+pkgver=2.0.1.3.g467617a
 pkgrel=1
-pkgdesc='Auto-configure CFS and process priorities for improved desktop responsiveness'
+epoch=2
+pkgdesc='system76 userspace scheduler'
+arch=(x86_64)
 url='https://github.com/pop-os/system76-scheduler'
-source=("https://github.com/pop-os/$pkgname/archive/refs/tags/$pkgver.tar.gz")
-sha256sums=('6b6d627bbc5350cd436bd88a25ad577bcd6c5198c463162f74e96103f742083c')
-arch=('x86_64')
-license=('MPL-2.0')
-makedepends=('rust' 'just' 'linux-headers' 'pipewire' 'llvm' 'clang')
-depends=('bcc-tools' 'python-bcc')
+license=('MPL-2')
+provides=(${pkgname})
+conflicts=(${pkgname})
+depends=(bcc-tools python-bcc)
+makedepends=(git rust just linux-headers pipewire)
+source=("git+$url")
+sha256sums=('SKIP')
+backup=(
+  'etc/system76-scheduler/assignments/default.ron'
+)
 
-build () {
-	cd "$srcdir/$pkgname-$pkgver"
+pkgver() {
+  cd ${pkgname}
+  git describe --tags | sed -e "s/^v//" | tr '-' '.'
+}
 
-	just execsnoop=/usr/share/bcc/tools/execsnoop build-release
+build() {
+  cd ${pkgname}
+  just execsnoop=/usr/share/bcc/tools/execsnoop build-release
 }
 
 package() {
-	cd "$srcdir/$pkgname-$pkgver"
-
-	just sysconfdir=/usr/share rootdir="$pkgdir" install
+  cd ${pkgname}
+  just sysconfdir=/usr/share rootdir=${pkgdir} install
 }
